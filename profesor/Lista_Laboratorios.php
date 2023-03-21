@@ -42,15 +42,25 @@
           while($data = $query->fetch()){
         ?>
         <div class="col-md-4 text-center border mt-3 p-4 bg-light">
-            <div class="card m-2 shadow" style="width: 18rem";>
-              <img src="images/card-school.png" class="card-img-top" alt="...">
+            <div class="card m-2 shadow" style="width: 18rem;">
+              <?php if(!file_exists('images/laboratorios/'.$data['imagen'])){ ?>
+                <img src="images/card-school.png" class="card-img-top" style="width: 100%; height: 200px;" alt="imagen laboratorio">
+              <?php }else{ ?>
+                <img src="images/laboratorios/<?=$data['imagen'] ?>" style="width: 100%; height: 200px;" class="card-img-top" alt="<?=$data['titulo'] ?>">
+              <?php } ?>
               <div class="card-body">
                 <h4 class="card-title text-center"><?=$data['titulo'] ?></h4>
-              
                 <a href="ver_laboratorio.php?laboratorio=<?= $data['id']?>" class="btn btn-primary">Acceder</a>
-                <button class="btn btn-danger icon-btn" onclick="eliminarlaboratorio(<?=
-                  $data['id'] ?>)"></i>Eliminar</button>
-                <a href="editar_laboratorio.php?laboratorio=<?= $data['id']?>" class="btn btn-primary">Editar</a>
+                <a href="editar_laboratorio.php?laboratorio=<?= $data['id']?>" class="btn btn-secondary">Editar</a>
+                <button onclick="confirmar(<?=$data['id']?>)" class="btn btn-danger">Eliminar</button>
+                <script>
+                  function confirmar(id){
+                    var respuesta = confirm("¿Está seguro de eliminar el laboratorio?");
+                    if(respuesta == true){
+                      window.location.href = "eliminar_laboratorio.php?laboratorio="+id;
+                    }
+                  }
+                </script>
               </div>
             </div>
         </div>

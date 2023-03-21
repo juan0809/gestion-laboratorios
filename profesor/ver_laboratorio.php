@@ -35,40 +35,43 @@ $tareas = $query->fetchAll();
       <li class="breadcrumb-item"><a href="#">Laboratorios</a></li>
     </ul>
   </div>
-  <div >
-    <p>Imagen: <?= $data['imagen']; ?> </p>
+  <div>
+  <img src="images/laboratorios/<?=$data['imagen'] ?>" width="65%" alt="<?= $data['titulo']; ?>">
   </div>
-  <div >
+  <br/>
+  <div>
     <p><?= $data['descripcion']; ?> </p>
   </div>
-  <div >
+  <div>
     <p class="font-weight-bold">Objetivos:</p>
     <P><?= $data['objetivos']; ?></P>
   </div>
 
   <!-- Lista de tareas -->
     <div>
+    <br/>
     <?php foreach ($tareas as $tarea) { ?>
         <?php if (!empty($tarea['titulo_tarea'])) { ?>
             <h5><?= $tarea['titulo_tarea']; ?></h5>
         <?php } ?>
-
+        <br/>
         <?php if (!empty($tarea['imagen_tarea'])) { ?>
-            <p>Imagen: <?= $tarea['imagen_tarea']; ?></p>
+          <img src="images/tareas/<?=$tarea['imagen_tarea'] ?>" width="65%" alt="<?= $tarea['titulo_tarea']; ?>">
         <?php } ?>
-
+        <br/>
         <?php if (!empty($tarea['descripcion_tarea'])) { ?>
-            <p><?= $tarea['descripcion_tarea']; ?></p>
+            <p>Descripción: <?= $tarea['descripcion_tarea']; ?></p>
         <?php } ?>
-
+        <br/>
         <?php if (!empty($tarea['codigo'])) { ?>
-          <p>Codigo de ejemplo</p>
-            <textarea name="code_codigo" id="" cols="30" rows="10"><?= $tarea['codigo']; ?></textarea>
+          <strong> <p>Código:</p></strong>
+            <textarea name="code_codigo" id="" cols="80" rows="10"><?= $tarea['codigo']; ?></textarea>
+            <button class="btn btn-danger icon-btn" >Guardar</button>
         <?php } ?>
-
+        <br/>
         <?php if (!empty($tarea['codigou'])) { ?>
-            <p>Código U:</p>
-            <div class="form-group col-12">  <textarea name="code_codigo" id="" cols="30" rows="10"><?= $tarea['codigou']; ?></textarea> </div>
+           <strong> <p>Código U:</p></strong>
+            <textarea name="code_codigo" id="" cols="80" rows="10"><?= $tarea['codigou']; ?></textarea> 
         <?php } ?>
     <?php } ?>
     </div>
